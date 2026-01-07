@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Het Gandhi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="grid">
+
+    <!-- HERO (Image 2) -->
+    <div class="card hero">
+      <div class="avatar">H</div>
+
+      <h1>Hello, I'm <span>Het Gandhi</span></h1>
+
+      <p>
+        I am an IT Consultant and Developer focused on simplifying tasks through efficient, smart, and practical technology solutions. 
+		I help businesses improve productivity by designing systems that are easy to use and reliable. 🚀💻
+      </p>
+
+      <div class="role">
+        <span class="role-dot"></span>
+        <div>
+          <strong>IT Consultant and Developer</strong><br>
+          <small>Based in Vadodara</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATUS (Image 2) -->
+    <div class="card status">
+      <div class="status-top">
+        <span class="status-dot"></span>
+        <strong>Available for work</strong>
+      </div>
+      <small>Open to freelance / full-time</small>
+    </div>
+
+    <!-- WORK EXPERIENCE (Image 1 ONLY) -->
+    <div class="card work">
+      <h3>Work Experience</h3>
+      <strong>2024 – IT MANAGER</strong><br>
+      <span>BLACK BUNNY</span>
+    </div>
+
+    <!-- CONTACT (Image 2) -->
+    <div class="card contact">
+      <h3>Contact</h3>
+      <p>Let’s work together on your next project</p>
+      <a href="mailto:it.hetgandhi@gmail.com?subject=Project%20Inquiry">Get in touch →</a>
+    </div>
+
+<!-- CONTACT (with social icons) -->
+<div class="card contact">
+  <h3>Social Media</h3>
+  <div class="contact-socials">
+    <a href="https://github.com/jarvis-8520" aria-label="GitHub">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg">
+    </a>
+    <a href="https://www.instagram.com/het.hack/" aria-label="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
+    </a>
+    <a href="#" aria-label="WhatsApp">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
+    </a>
+    <a href="http://linkedin.com/in/het-gandhi-2144673a0" aria-label="LinkedIn">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg">
+    </a>
+  </div>
+</div>
+
+
+    <!-- PROJECTS (Image 2) -->
+    <div class="card projects">
+      <h3>Recent Projects</h3>
+      <ul>
+		<li><span>OTP-Based PC Unlock System</span><small>Python / Cloud Services</small></li>
+		<li><span>Portfolio Website</span><small>HTML / CSS / JS</small></li>
+		<li><span>Workflow Automation</span><small>Python / Bash / Shell</small></li>
+		<li><span>Inventory Management System</span><small>Python / Excel</small></li>
+      </ul>
+    </div>
+
+<!-- SKILLS (Image 2) -->
+<div class="card skills">
+  <h3>Skills & Tech</h3>
+
+  <div class="tags tags-collapsed" id="skillsTags">
+    <span>IT Consulting</span>
+    <span>IT Infrastructure Planning & Support</span>
+    <span>System Design & Architecture</span>
+    <span>Hardware / Software Integration</span>
+    <span>Semnox Parafit Administration</span>
+    <span>Excel Automation & Reporting</span>
+    <span>CCTV Networking</span>
+    <span>System Access Control</span>
+    <span>Security-Oriented System Design</span>
+    <span>Workflow Automation</span>
+    <span>Automation Strategy & Optimization</span>
+    <span>Python</span>
+    <span>JavaScript</span>
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>Web Development</span>
+  </div>
+
+  <button class="expand-btn" onclick="toggleSkills()">Read all ↓</button>
+</div>
+
+
+  </div>
+</div>
+</body>
+<script>
+  function toggleSkills() {
+    const tags = document.getElementById("skillsTags");
+    const btn = document.querySelector(".expand-btn");
+
+    if (!tags || !btn) return;
+
+    tags.classList.toggle("tags-collapsed");
+
+    btn.textContent = tags.classList.contains("tags-collapsed")
+      ? "Read all ↓"
+      : "Show less ↑";
+  }
+</script>
+
+<script>
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty("--x", `${x}px`);
+      card.style.setProperty("--y", `${y}px`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--x", `50%`);
+      card.style.setProperty("--y", `50%`);
+    });
+  });
+</script>
+<script>
+  document.querySelectorAll(".tags span").forEach((tag, i) => {
+    tag.style.setProperty("--i", i);
+  });
+</script>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal");
+        } else {
+          entry.target.classList.remove("reveal");
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  document.querySelectorAll(".card").forEach(card => {
+    observer.observe(card);
+  });
+</script>
+<script>
+  document.querySelectorAll(".card").forEach(card => {
+
+    card.addEventListener("touchstart", () => {
+      card.classList.add("touch-active");
+    });
+
+    card.addEventListener("touchend", () => {
+      card.classList.remove("touch-active");
+    });
+
+    card.addEventListener("touchcancel", () => {
+      card.classList.remove("touch-active");
+    });
+
+  });
+</script>
+
+
+
+</html>
